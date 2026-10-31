@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="The latest gaming news, made easy to read.">
+    <title>News Gamer Talks — Gaming, made clear</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Space+Grotesk:wght@500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
+  </head>
+  <body>
+    <header class="site-header">
+      <div class="header-inner">
+        <a class="brand" href="index.html" aria-label="News Gamer Talks home">
+          <span class="brand-mark" aria-hidden="true">N</span>
+          <span>News Gamer Talks</span>
+        </a>
+        <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-nav">Menu</button>
+        <nav class="site-nav" id="site-nav" aria-label="Main navigation">
+          <a class="active" href="index.html">Home</a>
+          <a href="#latest">Latest News</a>
+          <a href="#categories">Categories</a>
+          <a href="#about">About</a>
+        </nav>
+      </div>
+    </header>
+
+    <main>
+      <section class="hero page-width">
+        <div class="hero-copy">
+          <span class="eyebrow"><span class="status-dot"></span> Your daily gaming briefing</span>
+          <h1>Gaming news.<br><span>Simply told.</span></h1>
+          <p>Big updates, new releases, and the stories players care about — all in one place.</p>
+          <a class="button button-dark" href="#latest">Explore the latest <span aria-hidden="true">↘</span></a>
+        </div>
+        <div class="hero-art">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRxU0lWi5Nero30cGnkS81LlCw4qIRBEw0cDLzU9u8QOA&s=10" alt="Colorful lights at a gaming event">
+          <div class="hero-note"><span class="note-icon">✦</span><span>Stay in the game.<br><strong>Stay in the know.</strong></span></div>
+          <span class="hero-index">N° 001 — THE PLAYER'S EDITION</span>
+        </div>
+      </section>
+
+      <section class="latest-section page-width" id="latest">
+        <div class="section-heading">
+          <div>
+            <span class="eyebrow">THE LATEST</span>
+            <h2>Stories worth a look<span class="accent-period">.</span></h2>
+          </div>
+          <p>Fresh from the worlds you play in.</p>
+        </div>
+        <div class="category-bar" id="categories" aria-label="Filter stories by category">
+          <span class="category-label">BROWSE BY</span>
+          <button class="filter-chip selected" type="button" data-category="All">All stories</button>
+          <button class="filter-chip" type="button" data-category="PlayStation">PlayStation</button>
+          <button class="filter-chip" type="button" data-category="Xbox">Xbox</button>
+          <button class="filter-chip" type="button" data-category="PC">PC</button>
+          <button class="filter-chip" type="button" data-category="Mobile">Mobile</button>
+        </div>
+        <div class="news-grid" id="news-grid" aria-live="polite"></div>
+      </section>
+
+      <section class="about-strip page-width" id="about">
+        <span class="about-symbol" aria-hidden="true">N.</span>
+        <div>
+          <span class="eyebrow">A LITTLE ABOUT US</span>
+          <h2>For the love of the game.</h2>
+          <p>News Gamer Talks makes gaming news easier to follow. No noise, just the stories and details that matter to players.</p>
+        </div>
+        <a href="https://mail.google.com/mail/u/0/?tab=rm&ogbl#sent?compose=GTvVlcSBpDkLjZqkcHbrnpbCXFPckcdrmQtPZqZLqbBncfMWjrZtgFHnLGppxgKFknVPJZvFzFSfk" class="text-link">Say hello <span aria-hidden="true">↗</span></a>
+      </section>
+    </main>
+
+    <footer class="site-footer page-width">
+      <a class="brand footer-brand" href="index.html"><span class="brand-mark" aria-hidden="true">N.</span><span>News Gamer Talks BY PRATIYUSH RAJ</span></a>
+      <span>Good games. Good stories. © <span id="current-year"></span></span>
+    </footer>
+  </body>
+</html>
