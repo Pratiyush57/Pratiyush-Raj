@@ -1,5 +1,38 @@
 const stories = [
   {
+    id: "once-human-pc-mobile-release",
+    category: "PC",
+    categories: ["PC", "Mobile"],
+    date: "November 1, 2026",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQsS9VB9IE9SSvk5UlyKWhlEm7EDBC5H65vQeXDg0FAaw&s=10",
+    title: "Once Human brings its survival world to PC and mobile",
+    summary: "Starry Studio's free-to-play multiplayer survival game launched on Windows in 2024 and on iOS and Android in 2025.",
+    author: "News Gamer Talks",
+    deck: "Once Human is a free-to-play, post-apocalyptic open-world survival game available on Windows, iOS, and Android.",
+    sections: [
+      { heading: "Survive in a post-apocalyptic world", text: "Once Human is a free-to-play, third-person multiplayer survival game set in a post-apocalyptic open world. Players explore its setting and take on the challenges of survival alongside others." },
+      { heading: "Available on PC and mobile", text: "The game launched for Windows on July 9, 2024, followed by releases for iOS and Android on April 23, 2025. It is developed and published by Starry Studio, a subsidiary of NetEase." },
+      { heading: "Choose your platform", text: "Players can find Once Human on Windows PC, iOS, and Android. Check the relevant official store listing for current availability and device requirements." }
+    ]
+  },
+  {
+    id: "cyberpunk-2077-40-million-sales",
+    category: "PlayStation",
+    categories: ["PlayStation", "Xbox"],
+    date: "November 1, 2026",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTayEzuyKix8StWh2FO3p5lPGdklarNkbuJJ8YweT_jjQ&s=10",
+    title: "Cyberpunk 2077 surpasses 40 million copies sold",
+    summary: "CD Projekt's sci-fi RPG has topped 40 million sales, years after a difficult launch and a major post-release turnaround.",
+    author: "Wikipidia",
+    deck: "Cyberpunk 2077 has reached a major sales milestone across its many platforms, while its sequel remains in development.",
+    sections: [
+      { heading: "A major milestone for Night City", text: "As of July 2026, Cyberpunk 2077 had sold more than 40 million copies worldwide. The action RPG puts players in the role of V, a mercenary caught up in a struggle involving Johnny Silverhand and the powerful Arasaka Corporation." },
+      { heading: "From rocky launch to renewed interest", text: "The game drew criticism for technical problems, especially on PlayStation 4 and Xbox One at launch. Subsequent updates, the Phantom Liberty expansion, and the Cyberpunk: Edgerunners anime helped bring renewed attention to Night City." },
+      { heading: "Available across generations", text: "Cyberpunk 2077 is available on PlayStation and Xbox consoles, as well as PC, macOS, and Nintendo Switch 2. Phantom Liberty is available on PlayStation 5, Xbox Series X|S, PC, macOS, and Nintendo Switch 2." },
+      { heading: "A sequel is in development", text: "CD Projekt announced a sequel in October 2022, and it remains in development. The studio has not announced a release date in the information provided here." }
+    ]
+  },
+  {
     id: "xbox-dashboard-october-update",
     category: "Xbox",
     date: "October 31, 2026",
@@ -696,23 +729,37 @@ const imageUrl = (image, width = 900) =>
     ? image
     : `https://images.unsplash.com/${image}?auto=format&fit=crop&w=${width}&q=82`;
 
+const storyCategories = (story) => story.categories ?? [story.category];
+const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (character) => ({
+  "&": "&amp;",
+  "<": "&lt;",
+  ">": "&gt;",
+  '"': "&quot;",
+  "'": "&#39;"
+})[character]);
+let generatedStories = [];
+let currentCategory = "All";
+let newsLoaded = false;
+
 function renderCards(category = "All") {
   const grid = document.querySelector("#news-grid");
   if (!grid) return;
+  currentCategory = category;
 
+  const allStories = [...generatedStories, ...stories];
   const visibleStories = category === "All"
-    ? stories
-    : stories.filter((story) => story.category === category);
+    ? allStories
+    : allStories.filter((story) => storyCategories(story).includes(category));
 
   grid.innerHTML = visibleStories.map((story) => `
     <article class="news-card">
-      <a class="card-image-link" href="article.html?id=${encodeURIComponent(story.id)}" aria-label="Read: ${story.title}">
-        <img class="card-image" src="${imageUrl(story.image, 700)}" alt="" loading="lazy">
+      <a class="card-image-link" href="article.html?id=${encodeURIComponent(story.id)}" aria-label="Read: ${escapeHtml(story.title)}">
+        <img class="card-image" src="${escapeHtml(imageUrl(story.image, 700))}" alt="${escapeHtml(story.title)} game artwork" loading="lazy">
       </a>
       <div class="card-content">
-        <div class="card-meta"><span class="tag">${story.category}</span><span class="meta-dot"></span><time>${story.date}</time></div>
-        <h3 class="card-title"><a href="article.html?id=${encodeURIComponent(story.id)}">${story.title}</a></h3>
-        <p class="card-summary">${story.summary}</p>
+        <div class="card-meta"><span class="tag">${escapeHtml(storyCategories(story).join(" / "))}</span><span class="meta-dot"></span><time>${escapeHtml(story.date)}</time></div>
+        <h3 class="card-title"><a href="article.html?id=${encodeURIComponent(story.id)}">${escapeHtml(story.title)}</a></h3>
+        <p class="card-summary">${escapeHtml(story.summary)}</p>
         <a class="read-link" href="article.html?id=${encodeURIComponent(story.id)}">Read Full Story <span aria-hidden="true">→</span></a>
       </div>
     </article>
@@ -724,8 +771,9 @@ function renderArticle() {
   if (!container) return;
 
   const id = new URLSearchParams(window.location.search).get("id");
-  const story = stories.find((item) => item.id === id);
+  const story = [...generatedStories, ...stories].find((item) => item.id === id);
   if (!story) {
+    if (!newsLoaded && id?.startsWith("live-")) return;
     document.title = "Story not found — News Gamer Talks";
     container.innerHTML = `
       <a class="back-link" href="index.html"><span aria-hidden="true">←</span> Back to Home</a>
@@ -735,27 +783,98 @@ function renderArticle() {
   }
 
   document.title = `${story.title} — News Gamer Talks`;
+  const categoryLabel = storyCategories(story).join(" / ");
   const articleSections = story.sections.map((section, index) => `
     <section>
-      <h2>${section.heading}</h2>
-      <p>${section.text}</p>
-      ${index === 0 ? `<img class="article-inline-image" src="${imageUrl(story.image, 1000)}" alt="${story.category} gaming scene" loading="lazy"><p class="image-caption">A closer look at the world behind the story.</p>` : ""}
+      <h2>${escapeHtml(section.heading)}</h2>
+      <p>${escapeHtml(section.text)}</p>
+      ${index === 0 ? `<img class="article-inline-image" src="${escapeHtml(imageUrl(story.image, 1000))}" alt="${escapeHtml(story.title)} game artwork" loading="lazy"><p class="image-caption">A closer look at ${escapeHtml(story.title)}.</p>` : ""}
     </section>
   `).join("");
+  const sourceCredit = story.sourceUrl
+    ? `<p class="article-source">Reporting source: <a href="${escapeHtml(story.sourceUrl)}" target="_blank" rel="noopener noreferrer">${escapeHtml(story.sourceTitle || "Read the original report")}</a></p>`
+    : "";
+  const imageCredit = story.imageSource
+    ? `<p class="article-image-source">Game image: <a href="${escapeHtml(story.imageSource)}" target="_blank" rel="noopener noreferrer">View image source</a></p>`
+    : "";
 
   container.innerHTML = `
     <a class="back-link" href="index.html"><span aria-hidden="true">←</span> Back to Home</a>
     <header class="article-header">
-      <span class="article-category">${story.category}</span>
-      <h1>${story.title}</h1>
-      <p class="article-deck">${story.deck}</p>
-      <div class="article-byline"><strong>By ${story.author}</strong><span class="meta-dot"></span><time>${story.date}</time></div>
+      <span class="article-category">${escapeHtml(categoryLabel)}</span>
+      <h1>${escapeHtml(story.title)}</h1>
+      <p class="article-deck">${escapeHtml(story.deck)}</p>
+      <div class="article-byline"><strong>${escapeHtml(story.author)}</strong><span class="meta-dot"></span><time>${escapeHtml(story.date)}</time></div>
+      ${sourceCredit}
     </header>
-    <img class="article-featured" src="${imageUrl(story.image, 1400)}" alt="${story.category} gaming scene">
-    <p class="image-caption">The latest from the world of ${story.category} gaming.</p>
+    <img class="article-featured" src="${escapeHtml(imageUrl(story.image, 1400))}" alt="${escapeHtml(story.title)} game artwork">
+    ${imageCredit}
+    <p class="image-caption">The latest from the world of ${escapeHtml(categoryLabel)} gaming.</p>
     <div class="article-body">${articleSections}</div>
     <div class="article-bottom"><a class="back-link" href="index.html"><span aria-hidden="true">←</span> Back to Home</a></div>
   `;
+}
+
+function isHttpsUrl(value) {
+  try {
+    return new URL(value).protocol === "https:";
+  } catch {
+    return false;
+  }
+}
+
+function isGeneratedStory(story) {
+  return story && /^live-[a-z0-9-]+$/.test(story.id) &&
+    typeof story.title === "string" &&
+    typeof story.summary === "string" &&
+    typeof story.deck === "string" &&
+    typeof story.date === "string" &&
+    typeof story.author === "string" &&
+    Array.isArray(story.categories) &&
+    story.categories.length > 0 &&
+    story.categories.every((category) => ["PlayStation", "Xbox", "PC", "Mobile"].includes(category)) &&
+    Array.isArray(story.sections) &&
+    story.sections.length >= 2 &&
+    story.sections.every((section) => typeof section.heading === "string" && typeof section.text === "string") &&
+    isHttpsUrl(story.image) &&
+    isHttpsUrl(story.sourceUrl) &&
+    (!story.imageSource || isHttpsUrl(story.imageSource));
+}
+
+async function loadGeneratedNews() {
+  const status = document.querySelector("#news-update-status");
+  try {
+    const response = await fetch("/api/news");
+    let result;
+    try {
+      result = await response.json();
+    } catch {
+      throw new Error("The news service returned an invalid response. Start the Node server and check its configuration.");
+    }
+    if (!response.ok) throw new Error(result.error || `News service returned ${response.status}`);
+    if (!Array.isArray(result.stories) || !result.stories.every(isGeneratedStory)) {
+      throw new Error("The news service returned stories in an unexpected format.");
+    }
+
+    generatedStories = result.stories;
+    newsLoaded = true;
+    renderCards(currentCategory);
+    renderArticle();
+    if (status) {
+      status.classList.remove("error");
+      status.textContent = generatedStories.length
+        ? `Latest gaming news updated from Google Search. ${generatedStories.length} sourced ${generatedStories.length === 1 ? "story" : "stories"} added.`
+        : "No new verified gaming stories were found. Existing stories are still available.";
+    }
+  } catch (error) {
+    newsLoaded = true;
+    renderArticle();
+    if (status) {
+      status.classList.add("error");
+      status.textContent = `Live news could not be updated: ${error.message} Existing stories are still available.`;
+    }
+    console.error("Could not load live gaming news:", error);
+  }
 }
 
 document.querySelectorAll(".filter-chip").forEach((button) => {
@@ -777,3 +896,5 @@ document.querySelector(".menu-toggle")?.addEventListener("click", (event) => {
 document.querySelector("#current-year")?.replaceChildren(String(new Date().getFullYear()));
 renderCards();
 renderArticle();
+loadGeneratedNews();
+window.setInterval(loadGeneratedNews, 30 * 60 * 1000);
