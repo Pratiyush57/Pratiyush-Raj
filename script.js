@@ -185,16 +185,19 @@ const stories = [
   {
     id: "phantom-blade-zero-steam-players",
     category: "PC",
-    date: "October 31, 2026",
+    categories: ["PC", "PlayStation", "Xbox"],
+    date: "November 1, 2026",
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRFqj84fGX3f4UsunQrLTv7NRMGhkIWTr6j9GAMjncE2w&s=10",
-    title: "Phantom Blade Zero surpasses 500,000 concurrent Steam players",
-    summary: "S-GAME's martial-arts action RPG has passed a major player milestone shortly after launch.",
+    title: "Phantom Blade Zero draws up to 730,000 Steam players at launch",
+    summary: "The action RPG drew 700,000 to 730,000 concurrent Steam players in its first 24 hours and earned an 89/100 top-critic score.",
     author: "News Gamer Talks",
-    deck: "Phantom Blade Zero has drawn a large Steam audience, with concurrent players reportedly passing the 500,000 mark.",
+    deck: "Phantom Blade Zero launched to a huge Steam audience, while unofficial PC mods are already adding new graphics and gameplay options.",
+    sourceUrl: "https://www.google.com/search?kgmid=%2Fg%2F11sv500pwy&q=Phantom+Blade+Zero",
+    sourceTitle: "Phantom Blade Zero",
     sections: [
-      { heading: "A strong start on Steam", text: "S-GAME's martial-arts action RPG Phantom Blade Zero has reportedly surpassed 500,000 concurrent players on Steam shortly after release. The milestone points to strong interest from PC players." },
-      { heading: "A distinctive action style", text: "The game centers on fast-paced combat in a martial-arts-inspired world. Players and critics have been sharing their impressions as more people try it." },
-      { heading: "More to come", text: "Concurrent player counts can change over time. Check Steam and the game's official channels for current player figures and updates." }
+      { heading: "A massive first day on Steam", text: "Phantom Blade Zero drew between 700,000 and 730,000 concurrent players on Steam within its first 24 hours, giving the action RPG a remarkable launch." },
+      { heading: "Strong early critic reception", text: "The game also earned an 89/100 top-critic score, adding critical acclaim to its strong player numbers." },
+      { heading: "Unofficial PC mods arrive", text: "Unofficial PC mods have already appeared, including support for DLSS 5 and tweaks that bring back defeated enemies in a style familiar to FromSoftware games. These are community-made modifications, not official game features." }
     ]
   },
   {
