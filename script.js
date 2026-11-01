@@ -737,19 +737,16 @@ const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (character) => (
   '"': "&quot;",
   "'": "&#39;"
 })[character]);
-let generatedStories = [];
 let currentCategory = "All";
-let newsLoaded = false;
 
 function renderCards(category = "All") {
   const grid = document.querySelector("#news-grid");
   if (!grid) return;
   currentCategory = category;
 
-  const allStories = [...generatedStories, ...stories];
   const visibleStories = category === "All"
-    ? allStories
-    : allStories.filter((story) => storyCategories(story).includes(category));
+    ? stories
+    : stories.filter((story) => storyCategories(story).includes(category));
 
   grid.innerHTML = visibleStories.map((story) => `
     <article class="news-card">
@@ -771,9 +768,8 @@ function renderArticle() {
   if (!container) return;
 
   const id = new URLSearchParams(window.location.search).get("id");
-  const story = [...generatedStories, ...stories].find((item) => item.id === id);
+  const story = stories.find((item) => item.id === id);
   if (!story) {
-    if (!newsLoaded && id?.startsWith("live-")) return;
     document.title = "Story not found — News Gamer Talks";
     container.innerHTML = `
       <a class="back-link" href="index.html"><span aria-hidden="true">←</span> Back to Home</a>
@@ -815,68 +811,6 @@ function renderArticle() {
   `;
 }
 
-function isHttpsUrl(value) {
-  try {
-    return new URL(value).protocol === "https:";
-  } catch {
-    return false;
-  }
-}
-
-function isGeneratedStory(story) {
-  return story && /^live-[a-z0-9-]+$/.test(story.id) &&
-    typeof story.title === "string" &&
-    typeof story.summary === "string" &&
-    typeof story.deck === "string" &&
-    typeof story.date === "string" &&
-    typeof story.author === "string" &&
-    Array.isArray(story.categories) &&
-    story.categories.length > 0 &&
-    story.categories.every((category) => ["PlayStation", "Xbox", "PC", "Mobile"].includes(category)) &&
-    Array.isArray(story.sections) &&
-    story.sections.length >= 2 &&
-    story.sections.every((section) => typeof section.heading === "string" && typeof section.text === "string") &&
-    isHttpsUrl(story.image) &&
-    isHttpsUrl(story.sourceUrl) &&
-    (!story.imageSource || isHttpsUrl(story.imageSource));
-}
-
-async function loadGeneratedNews() {
-  const status = document.querySelector("#news-update-status");
-  try {
-    const response = await fetch("/api/news");
-    let result;
-    try {
-      result = await response.json();
-    } catch {
-      throw new Error("The news service returned an invalid response. Start the Node server and check its configuration.");
-    }
-    if (!response.ok) throw new Error(result.error || `News service returned ${response.status}`);
-    if (!Array.isArray(result.stories) || !result.stories.every(isGeneratedStory)) {
-      throw new Error("The news service returned stories in an unexpected format.");
-    }
-
-    generatedStories = result.stories;
-    newsLoaded = true;
-    renderCards(currentCategory);
-    renderArticle();
-    if (status) {
-      status.classList.remove("error");
-      status.textContent = generatedStories.length
-        ? `Latest gaming news updated from Google Search. ${generatedStories.length} sourced ${generatedStories.length === 1 ? "story" : "stories"} added.`
-        : "No new verified gaming stories were found. Existing stories are still available.";
-    }
-  } catch (error) {
-    newsLoaded = true;
-    renderArticle();
-    if (status) {
-      status.classList.add("error");
-      status.textContent = `Live news could not be updated: ${error.message} Existing stories are still available.`;
-    }
-    console.error("Could not load live gaming news:", error);
-  }
-}
-
 document.querySelectorAll(".filter-chip").forEach((button) => {
   button.addEventListener("click", () => {
     document.querySelector(".filter-chip.selected")?.classList.remove("selected");
@@ -896,5 +830,3 @@ document.querySelector(".menu-toggle")?.addEventListener("click", (event) => {
 document.querySelector("#current-year")?.replaceChildren(String(new Date().getFullYear()));
 renderCards();
 renderArticle();
-loadGeneratedNews();
-window.setInterval(loadGeneratedNews, 30 * 60 * 1000);

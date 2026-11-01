@@ -56,8 +56,6 @@ h1, h2, p { margin-top: 0; }
 .category-label { margin-right: 7px; color: #909690; font-size: 9px; font-weight: 700; letter-spacing: 1.1px; }
 .filter-chip { min-height: 30px; padding: 0 13px; border: 1px solid var(--line); border-radius: 30px; background: white; color: #6d746e; cursor: pointer; font-size: 10px; transition: .2s ease; }
 .filter-chip:hover, .filter-chip.selected { border-color: var(--ink); background: var(--ink); color: white; }
-.news-update-status { margin: -10px 0 20px; color: var(--muted); font-size: 11px; line-height: 1.6; }
-.news-update-status.error { color: #a33b2f; }
 .news-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 25px 20px; }
 .news-card { min-width: 0; }
 .card-image-link { display: block; overflow: hidden; aspect-ratio: 1.57; border-radius: 4px; background: var(--soft); }
