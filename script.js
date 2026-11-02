@@ -1,5 +1,52 @@
 const stories = [
   {
+    id: "gta-vi-preload-vice-city-exploration",
+    category: "PlayStation",
+    categories: ["PlayStation", "Xbox"],
+    date: "November 2, 2026",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRDdElUJ4X70nHtX55ERwa_POc_vuV6XKJkZVzReJVXJA&s=10",
+    title: "GTA VI pre-loads begin November 12 ahead of launch",
+    summary: "Digital pre-orders are expected to pre-load a week before launch, as Rockstar developers discuss Vice City's expanded open-world exploration.",
+    author: "News Gamer Talks",
+    deck: "Grand Theft Auto VI is set to launch on consoles November 19, 2026, with digital pre-loading expected to begin November 12.",
+    sections: [
+      { heading: "Pre-loading ahead of launch", text: "Digital pre-orders for Grand Theft Auto VI are scheduled to begin pre-loading on November 12, ahead of the game's console launch on November 19, 2026." },
+      { heading: "A more explorable Vice City", text: "Rockstar developers have reflected on the scale of the game and the overhaul of Vice City, describing an open world designed for broad exploration, with players able to enter nearly any location." },
+      { heading: "Coming to PlayStation and Xbox", text: "Grand Theft Auto VI is set to launch on PlayStation and Xbox consoles. Players should check official Rockstar and platform store listings for pre-order and launch details." }
+    ]
+  },
+  {
+    id: "minecraft-switch-2-native-vibrant-visuals",
+    category: "Nintendo Switch",
+    date: "November 2, 2026",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQSIoNv355p_MqpuKkqvh0NmloXoDhrwPHod7ZnRs344Q&s=10",
+    title: "Minecraft arrives on Nintendo Switch 2 with Vibrant Visuals",
+    summary: "The native Switch 2 edition brings Mojang's graphics upgrade, including directional lighting, volumetric fog, dynamic shadows, and reflective water.",
+    author: "News Gamer Talks",
+    deck: "Minecraft's native Nintendo Switch 2 edition is built for the new console and includes the Vibrant Visuals graphics upgrade.",
+    sections: [
+      { heading: "A native release for Switch 2", text: "Minecraft has launched as a native edition built specifically for Nintendo Switch 2, so players can play without relying on a backward-compatibility layer." },
+      { heading: "Vibrant Visuals upgrades the world", text: "The release includes Mojang's Vibrant Visuals upgrade in the base game, with directional lighting, volumetric fog, dynamic shadows, and enhanced water reflections." },
+      { heading: "A brighter look for familiar worlds", text: "The visual enhancements bring more atmospheric lighting and detail to Minecraft's landscapes while retaining its familiar block-based style." }
+    ]
+  },
+  {
+    id: "phantom-blade-zero-launch",
+    category: "PlayStation",
+    categories: ["PlayStation", "PC"],
+    date: "November 2, 2026",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQcMGI1d9QeOqGiDBhUPa6xvRbSg3kY-nqhkX_Eh0drJw&s=10",
+    title: "Phantom Blade Zero sells 4 million copies in 72 hours",
+    summary: "S-GAME's wuxia action RPG pairs a record-breaking launch with strong reviews and a peak of more than 833,000 concurrent Steam players.",
+    author: "News Gamer Talks",
+    deck: "Phantom Blade Zero has made a major debut on PlayStation 5 and PC, blending fast swordplay with a dark fantasy world inspired by wuxia.",
+    sections: [
+      { heading: "A record-breaking launch", text: "Phantom Blade Zero sold more than 4 million units in its first 72 hours after launching on PlayStation 5 and PC. It also reached over 833,000 peak concurrent players on Steam during its opening weekend." },
+      { heading: "Strong reviews from critics and players", text: "The game received Metacritic scores in the high 80s, including 87 on PlayStation 5 and 88 on PC. Steam players rated it Very Positive." },
+      { heading: "A dark fantasy wuxia adventure", text: "Developed by S-GAME, Phantom Blade Zero combines Chinese martial arts with dark fantasy, steampunk, and horror in a style the developers call \"Kungfupunk.\" Players control Soul, an elite assassin, and take on intricate boss fights through fluid swordplay and motion-captured choreography." }
+    ]
+  },
+  {
     id: "once-human-pc-mobile-release",
     category: "PC",
     categories: ["PC", "Mobile"],
@@ -442,7 +489,7 @@ const stories = [
   },
   {
     id: "duskbloods-release-window",
-    category: "PlayStation",
+    category: "Nintendo Switch",
     date: "October 31, 2026",
     image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTWsUn4Cd2s77mcs30b4KiTr6ovp3fr5NGRyhcC77D-fA&s=10",
     title: "The Duskbloods release window shifts as other projects stay on schedule",
@@ -746,12 +793,32 @@ function renderCards(category = "All") {
   const grid = document.querySelector("#news-grid");
   if (!grid) return;
   currentCategory = category;
+  const searchQuery = document.querySelector("#news-search-input")?.value.trim().toLocaleLowerCase() ?? "";
 
   const visibleStories = category === "All"
     ? stories
     : stories.filter((story) => storyCategories(story).includes(category));
+  const matchingStories = searchQuery
+    ? visibleStories.filter((story) => {
+        const searchableText = [
+          story.title,
+          story.summary,
+          story.deck,
+          story.author,
+          story.date,
+          ...storyCategories(story),
+          ...story.sections.flatMap((section) => [section.heading, section.text])
+        ].join(" ").toLocaleLowerCase();
+        return searchableText.includes(searchQuery);
+      })
+    : visibleStories;
 
-  grid.innerHTML = visibleStories.map((story) => `
+  if (matchingStories.length === 0) {
+    grid.innerHTML = `<div class="empty-state"><h2>No stories found.</h2><p>Try a different search${category === "All" ? "" : ` or choose another category`}.</p></div>`;
+    return;
+  }
+
+  grid.innerHTML = matchingStories.map((story) => `
     <article class="news-card">
       <a class="card-image-link" href="article.html?id=${encodeURIComponent(story.id)}" aria-label="Read: ${escapeHtml(story.title)}">
         <img class="card-image" src="${escapeHtml(imageUrl(story.image, 700))}" alt="${escapeHtml(story.title)} game artwork" loading="lazy">
@@ -821,6 +888,16 @@ document.querySelectorAll(".filter-chip").forEach((button) => {
     renderCards(button.dataset.category);
   });
 });
+
+const searchForm = document.querySelector(".news-search");
+const searchInput = document.querySelector("#news-search-input");
+
+searchForm?.addEventListener("submit", (event) => {
+  event.preventDefault();
+  renderCards(currentCategory);
+});
+
+searchInput?.addEventListener("input", () => renderCards(currentCategory));
 
 document.querySelector(".menu-toggle")?.addEventListener("click", (event) => {
   const button = event.currentTarget;

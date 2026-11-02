@@ -52,6 +52,11 @@ h1, h2, p { margin-top: 0; }
 .section-heading h2, .about-strip h2 { margin: 9px 0 0; font: 600 30px/1.2 var(--display); letter-spacing: -1.3px; }
 .accent-period { color: #8bb832; }
 .section-heading > p { margin-bottom: 3px; color: var(--muted); font-size: 12px; }
+.news-search { display: flex; gap: 10px; max-width: 560px; margin-bottom: 20px; }
+.news-search input { width: 100%; min-width: 0; min-height: 45px; padding: 0 15px; border: 1px solid var(--line); border-radius: 5px; background: white; color: var(--ink); font: 13px var(--sans); }
+.news-search input:focus { outline: 2px solid #a9d84c; outline-offset: 2px; }
+.news-search .button { flex: 0 0 auto; border: 0; cursor: pointer; }
+.visually-hidden { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); white-space: nowrap; clip-path: inset(50%); }
 .category-bar { display: flex; align-items: center; gap: 9px; margin-bottom: 24px; flex-wrap: wrap; }
 .category-label { margin-right: 7px; color: #909690; font-size: 9px; font-weight: 700; letter-spacing: 1.1px; }
 .filter-chip { min-height: 30px; padding: 0 13px; border: 1px solid var(--line); border-radius: 30px; background: white; color: #6d746e; cursor: pointer; font-size: 10px; transition: .2s ease; }
@@ -137,6 +142,7 @@ h1, h2, p { margin-top: 0; }
   .latest-section { padding-top: 42px; padding-bottom: 60px; }
   .section-heading { align-items: start; gap: 12px; flex-direction: column; }
   .section-heading h2 { font-size: 27px; }
+  .news-search { max-width: none; }
   .news-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 25px 15px; }
   .card-title { font-size: 15px; }
   .card-summary { font-size: 10px; }

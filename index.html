@@ -51,6 +51,11 @@
           </div>
           <p>Fresh from the worlds you play in.</p>
         </div>
+        <form class="news-search" role="search">
+          <label class="visually-hidden" for="news-search-input">Search gaming news</label>
+          <input id="news-search-input" type="search" placeholder="Search gaming news..." autocomplete="off">
+          <button class="button button-dark" type="submit">Search</button>
+        </form>
         <div class="category-bar" id="categories" aria-label="Filter stories by category">
           <span class="category-label">BROWSE BY</span>
           <button class="filter-chip selected" type="button" data-category="All">All stories</button>
@@ -58,6 +63,7 @@
           <button class="filter-chip" type="button" data-category="Xbox">Xbox</button>
           <button class="filter-chip" type="button" data-category="PC">PC</button>
           <button class="filter-chip" type="button" data-category="Mobile">Mobile</button>
+          <button class="filter-chip" type="button" data-category="Nintendo Switch">Nintendo Switch</button>
         </div>
         <div class="news-grid" id="news-grid" aria-live="polite"></div>
       </section>
