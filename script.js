@@ -1,5 +1,165 @@
 const stories = [
   {
+    id: "gta-vi-november-2026-launch",
+    category: "PlayStation",
+    categories: ["PlayStation", "Xbox"],
+    topic: "Upcoming & New Releases",
+    date: "November 3, 2026",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQ6RiM19wF593mPxHAH4K_oWi7poil9APFvRYgtE_5tOw&s=10photo-1511512578047-dfb367046420",
+    title: "Grand Theft Auto VI countdown reaches its final weeks",
+    summary: "Rockstar's next open-world game is scheduled to launch November 19 on PlayStation 5 and Xbox Series X|S.",
+    author: "News Gamer Talks",
+    deck: "With the November 19 release approaching, GTA VI is one of the month's biggest stories.",
+    sections: [
+      { heading: "A major November release", text: "Grand Theft Auto VI is scheduled to launch on November 19, 2026, for PlayStation 5 and Xbox Series X|S." },
+      { heading: "Final details in the spotlight", text: "Marketing and launch details are drawing attention as Rockstar Games approaches release. Check Rockstar's official channels for the latest confirmed information." }
+    ]
+  },
+  {
+    id: "switch-2-november-classic-and-ports",
+    category: "Nintendo Switch",
+    categories: ["Nintendo Switch"],
+    topic: "Nintendo Switch 2",
+    date: "November 3, 2026",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcT82GsXhafeT4DGY3LpcCvSrlen6u3qsQxHnA1pPvtCMA&s=10photo-1578662996442-48f60103fc96",
+    title: "Nintendo Switch 2 gets a wave of classic and port releases",
+    summary: "The November slate includes Ocarina of Time, Stellar Blade Complete Edition, Metaphor: ReFantazio, and a Pikmin 4 upgrade.",
+    author: "News Gamer Talks",
+    deck: "Nintendo Switch 2 is seeing a busy month of new arrivals and enhanced editions.",
+    sections: [
+      { heading: "Classic and new arrivals", text: "The Legend of Zelda: Ocarina of Time is listed for November 5, alongside Stellar Blade Complete Edition and Metaphor: ReFantazio." },
+      { heading: "A Pikmin 4 upgrade", text: "Pikmin 4: Switch 2 Edition + Dandori Academy is also part of the lineup. Check Nintendo's store and announcements for regional availability and release details." }
+    ]
+  },
+  {
+    id: "world-of-warcraft-forever-launch",
+    category: "PC",
+    categories: ["PC"],
+    topic: "Gaming Services & Online Games",
+    date: "November 3, 2026",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTy7SJqJMzDpZIoA_P9ttzIpet4BM3JtxQnzhbiyNmw_g&s=10photo-1542751371-adc38448a05e",
+    title: "World of Warcraft: Forever launches on PC",
+    summary: "Blizzard's new MMORPG initiative introduces system changes and features aimed at reshaping the long-running game's endgame.",
+    author: "News Gamer Talks",
+    deck: "World of Warcraft: Forever marks a major new initiative for Blizzard's long-running online role-playing game.",
+    sections: [
+      { heading: "A new MMORPG initiative", text: "World of Warcraft: Forever has launched on PC, bringing changes to systems and new features for players." },
+      { heading: "A focus on the endgame", text: "The initiative aims to refresh the game's ongoing endgame loop. Players can check Blizzard's official notes for the complete list of changes." }
+    ]
+  },
+  {
+    id: "xbox-game-pass-november-2026",
+    category: "Xbox",
+    categories: ["Xbox", "PC"],
+    topic: "Gaming Services & Online Games",
+    date: "November 3, 2026",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS6c_xYwSapKwC5nc9_wAeFjGwbHPq3hdp2aQW8hzAOWQ&s=10photo-1493711662062-fa541f7fcb8",
+    title: "Xbox Game Pass confirms November additions",
+    summary: "The lineup includes Gravhounds in Early Access and a Football Manager 27 launch preview on November 3.",
+    author: "News Gamer Talks",
+    deck: "Microsoft's November Game Pass lineup brings new games and an early preview of Football Manager 27.",
+    sections: [
+      { heading: "New additions", text: "Game Pass subscribers are getting access to titles including Gravhounds in Early Access." },
+      { heading: "Football Manager preview", text: "Football Manager 27's launch preview is available November 3, ahead of the full release scheduled for November 10. Check the Xbox app for plan and platform availability." }
+    ]
+  },
+  {
+    id: "godzilla-destroy-all-monsters-melee-remastered",
+    category: "PlayStation",
+    categories: ["PC", "PlayStation", "Xbox", "Nintendo Switch"],
+    topic: "Upcoming & New Releases",
+    date: "November 3, 2026",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR-s7ItpNiUIy0OpnlW9AgQwm4owGi_wJIUKCz8UWXC5w&s=10photo-1560253023-3ec5d502959f",
+    title: "Godzilla: Destroy All Monsters Melee Remastered launches",
+    summary: "The remastered arena brawler from Pipeworks Studios and Atari arrives on PC, consoles, and Switch on November 3.",
+    author: "News Gamer Talks",
+    deck: "The classic monster brawler returns with a remastered release across current platforms.",
+    sections: [
+      { heading: "A remastered return", text: "Godzilla: Destroy All Monsters Melee Remastered is released November 3, developed by Pipeworks Studios and published by Atari." },
+      { heading: "Platforms", text: "The game is listed for PC, PlayStation 5, Xbox Series X|S, and Nintendo Switch and Switch 2." }
+    ]
+  },
+  {
+    id: "football-manager-27-release",
+    category: "PC",
+    categories: ["PC", "PlayStation", "Xbox", "Mobile"],
+    topic: "Upcoming & New Releases",
+    date: "November 3, 2026",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcS64xNJ4_1sic2R6T8S66XnF-3z2zbLIDf88LrOuclikA&s=10photo-1517466787929-bc90951d0974",
+    title: "Football Manager 27 kicks off November 10",
+    summary: "Sports Interactive's latest management sim is set for a multi-platform release, with deeper tactical AI and a refined match engine.",
+    author: "News Gamer Talks",
+    deck: "Football Manager 27's full release is scheduled for November 10 across PC, consoles, and mobile.",
+    sections: [
+      { heading: "Full release date", text: "Football Manager 27 is scheduled to launch on November 10 across PC, consoles, and mobile devices." },
+      { heading: "Tactical and match updates", text: "The new edition promises deeper tactical AI and a refined match engine. Platform-specific release details may vary." }
+    ]
+  },
+  {
+    id: "physical-discs-and-hardware-evolution",
+    category: "PC",
+    categories: [],
+    topic: "Industry & Hardware",
+    date: "November 3, 2026",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRcazi8NMmX8A7MlgLSLyfUxvVpHE499GLu8Lwem2sk3g&s=10photo-1486572788966-cfd3df1f5b42",
+    title: "Physical media and hardware choices remain in focus",
+    summary: "Industry conversations are turning to digital storefront longevity, physical discs, and right-to-repair frameworks.",
+    author: "News Gamer Talks",
+    deck: "Hardware and ownership questions continue to shape conversations across the games industry.",
+    sections: [
+      { heading: "The future of physical games", text: "Discussions about the role of physical discs continue alongside questions about preserving access to digital storefronts and purchased games." },
+      { heading: "Repairability and new hardware", text: "Right-to-repair frameworks are another point of discussion following Nintendo's Switch 2 transition. The industry debate reflects changing hardware and distribution models." }
+    ]
+  },
+  {
+    id: "warhammer-survivors-november-release",
+    category: "PC",
+    categories: ["PC", "PlayStation", "Xbox"],
+    topic: "Upcoming & New Releases",
+    date: "November 3, 2026",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTsWtpaELw4zYFVvd9NkJJluSgpXy9Izl0HFCQFdESsYA&s=10photo-1542751371-adc38448a05e",
+    title: "Warhammer Survivors brings bullet-heaven action on November 10",
+    summary: "The upcoming game brings survivors-style action to the Warhammer universe on PC and multiple consoles.",
+    author: "News Gamer Talks",
+    deck: "Warhammer Survivors is scheduled to release November 10, bringing fast-paced, bullet-heaven gameplay to the grimdark setting.",
+    sections: [
+      { heading: "Survivors action in the Warhammer universe", text: "Warhammer Survivors adapts the popular survivors and bullet-heaven genre to the Warhammer universe." },
+      { heading: "Release plans", text: "The game is scheduled for November 10 on PC and multiple consoles. Check official platform listings for the confirmed platform lineup." }
+    ]
+  },
+  {
+    id: "sonic-pico-park-november-12",
+    category: "PC",
+    categories: ["PC", "PlayStation", "Xbox", "Nintendo Switch"],
+    topic: "Upcoming & New Releases",
+    date: "November 3, 2026",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSq1XjYYJQPsHIGXPtTlrrWKzeIPwCgdo512_pqUdnULg&s=10photo-1511512578047-dfb367046420",
+    title: "Sonic PICO PARK brings eight-player co-op on November 12",
+    summary: "The multiplayer puzzle platformer is set to launch across platforms with couch and online play for up to eight players.",
+    author: "News Gamer Talks",
+    deck: "Sonic PICO PARK combines puzzle-platforming with cooperative play for groups of up to eight.",
+    sections: [
+      { heading: "Co-op chaos for eight", text: "Sonic PICO PARK supports up to eight players for cooperative puzzle-platforming, both locally and online." },
+      { heading: "Coming November 12", text: "The game is scheduled to launch November 12 across nearly all platforms. Check official listings for availability on your platform." }
+    ]
+  },
+  {
+    id: "the-game-awards-2026-date",
+    category: "PC",
+    categories: [],
+    topic: "Gaming Events",
+    date: "November 3, 2026",
+    image: "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRLJ4BRA2xQm7ZRt7HpW5-betE463WlerC8LjZyFSDtXQ&s=10photo-1470229722913-7c0e2dbbafd3",
+    title: "The Game Awards 2026 set for December 10",
+    summary: "The ceremony is scheduled for the Peacock Theater in Los Angeles as speculation builds around this year's contenders.",
+    author: "News Gamer Talks",
+    deck: "The Game Awards returns December 10, with attention turning to late-year releases and the awards conversation.",
+    sections: [
+      { heading: "A December ceremony", text: "The Game Awards 2026 is scheduled for December 10 at the Peacock Theater in Los Angeles." },
+      { heading: "Looking toward the contenders", text: "As the year winds down, players are discussing which late-year releases may enter the awards conversation and shape next year's gaming headlines." }
+    ]
+  },
+  {
     id: "gta-vi-preload-vice-city-exploration",
     category: "PlayStation",
     categories: ["PlayStation", "Xbox"],
@@ -780,6 +940,9 @@ const imageUrl = (image, width = 900) =>
     : `https://images.unsplash.com/${image}?auto=format&fit=crop&w=${width}&q=82`;
 
 const storyCategories = (story) => story.categories ?? [story.category];
+const storyLabels = (story) => story.topic
+  ? [story.topic, ...storyCategories(story)]
+  : storyCategories(story);
 const escapeHtml = (value) => String(value).replace(/[&<>"']/g, (character) => ({
   "&": "&amp;",
   "<": "&lt;",
@@ -797,7 +960,7 @@ function renderCards(category = "All") {
 
   const visibleStories = category === "All"
     ? stories
-    : stories.filter((story) => storyCategories(story).includes(category));
+    : stories.filter((story) => storyCategories(story).includes(category) || story.topic === category);
   const matchingStories = searchQuery
     ? visibleStories.filter((story) => {
         const searchableText = [
@@ -807,6 +970,7 @@ function renderCards(category = "All") {
           story.author,
           story.date,
           ...storyCategories(story),
+          story.topic ?? "",
           ...story.sections.flatMap((section) => [section.heading, section.text])
         ].join(" ").toLocaleLowerCase();
         return searchableText.includes(searchQuery);
@@ -824,7 +988,7 @@ function renderCards(category = "All") {
         <img class="card-image" src="${escapeHtml(imageUrl(story.image, 700))}" alt="${escapeHtml(story.title)} game artwork" loading="lazy">
       </a>
       <div class="card-content">
-        <div class="card-meta"><span class="tag">${escapeHtml(storyCategories(story).join(" / "))}</span><span class="meta-dot"></span><time>${escapeHtml(story.date)}</time></div>
+        <div class="card-meta"><span class="tag">${escapeHtml(storyLabels(story).join(" / "))}</span><span class="meta-dot"></span><time>${escapeHtml(story.date)}</time></div>
         <h3 class="card-title"><a href="article.html?id=${encodeURIComponent(story.id)}">${escapeHtml(story.title)}</a></h3>
         <p class="card-summary">${escapeHtml(story.summary)}</p>
         <a class="read-link" href="article.html?id=${encodeURIComponent(story.id)}">Read Full Story <span aria-hidden="true">→</span></a>
@@ -849,7 +1013,7 @@ function renderArticle() {
   }
 
   document.title = `${story.title} — News Gamer Talks`;
-  const categoryLabel = storyCategories(story).join(" / ");
+  const categoryLabel = storyLabels(story).join(" / ");
   const articleSections = story.sections.map((section, index) => `
     <section>
       <h2>${escapeHtml(section.heading)}</h2>
